@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Добавить{{ recipe.name }}{% endblock %}
+
+{% block content %}
+    <!-- <h3><a href="{% url 'recipes' %}"><<Назад</a></h3> -->
+
+    <div class="recipe_form">
+        <form method="post" enctype="multipart/form-data" class="recipe_form_form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Добавить" class="recipe_form_form_input">
+        </form>
+    </div>
+
+    
+
+    <!-- <h3><a href="{% url 'recipes' %}"><<Назад</a></h3> -->
+
+{% endblock %}

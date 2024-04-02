@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Рецепт - {{ recipe.name }}{% endblock %}
+
+{% block content %}
+    <!-- <h3><a href="{% url 'recipes' %}"><<Назад</a></h3> -->
+
+    <div class="one_recipe_block">
+        <div>
+            {% load static %}
+            <img src="{% static recipe.image %}" alt="My image">
+            <h1>{{ recipe.name }}</h1>
+        </div>
+
+        <div class="recipe_block_text">
+            <h1>Автор: {{ recipe.author }}</h1>
+            <h3>Время приготовления: {{ recipe.cooking_time }}мин.</h3>
+            <p><b>Ингредиенты:</b> {{ recipe.ingredients }}</p>
+            <p><b>Описание:</b> {{ recipe.description }}</p>
+            <p><b>Шаги приготовления:</b> {{ recipe.cooking_steps }}</p>
+        </div>
+        
+     
+
+    </div>
+    <!-- <h3><a href="{% url 'recipes' %}"><<Назад</a></h3> -->
+
+{% endblock %}
