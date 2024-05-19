@@ -46,11 +46,11 @@ def recipe_form(request):
                 image=f"main/{data['image'].name}/",
                 ingredients=data['ingredients'],
                 author=data['author'],)
-            category = Categories.objects.create(
-                name=data['category'],)
+            # category = Categories.objects.create(
+            #     name=data['category'],)
             RecipesCategories.objects.create(
                 recipes=recipe,
-                category=category,)
+                category=data['category'],)
             fs = FileSystemStorage(location='main/static/main/', base_url='/main')
             fs.save(data['image'].name, data['image'])
             return redirect('recipe_form')
