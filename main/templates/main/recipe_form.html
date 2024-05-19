@@ -5,10 +5,50 @@
 {% block content %}
     <!-- <h3><a href="{% url 'recipes' %}"><<Назад</a></h3> -->
 
-    <div class="recipe_form">
+    <div class="recipe_form"> 
         <form method="post" enctype="multipart/form-data" class="recipe_form_form">
             {% csrf_token %}
-            {{ form.as_p }}
+            
+            <p>
+                <label for={{ form.name.name }}>Название</label>
+                {{ form.name }}
+            </p>
+
+            <p>
+                <label for={{ form.description.name }}>Описание</label>
+                {{ form.description }}
+            </p>
+
+            <p>
+                <label for={{ form.cooking_steps.name }}>Шаги приготовления</label>
+                {{ form.cooking_steps }}
+            </p>
+
+            <p>
+                <label for={{ form.cooking_time.name }}>Время приготовления</label>
+                {{ form.cooking_time }}
+            </p>
+
+            <p>
+                <label for={{ form.image.name }}>Выбирете изображение</label>
+                {{ form.image }}
+            </p>
+
+            <p>
+                <label for={{ form.author.name }}>Автор</label>
+                {{ form.author }}
+            </p>
+
+            <p>
+                <label for={{ form.ingredients.name }}>Ингредиенты</label>
+                {{ form.ingredients }}
+            </p>
+
+            <p>
+                <label for={{ form.category.name }}>Категория</label>
+                {{ form.category }}
+            </p>
+            
             <input type="submit" value="Добавить" class="recipe_form_form_input">
         </form>
     </div>
