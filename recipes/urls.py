@@ -1,3 +1,6 @@
+"""
+Установка путей и привязка представлений
+"""
 from django.contrib import admin
 from django.urls import path, include
 

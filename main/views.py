@@ -1,24 +1,18 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, JsonResponse
-from random import choices, randint
-from main.models import Recipes, Categories, RecipesCategories
-from .forms import RecipesForm, CategoriesForm
+"""
+Файл представлений
+"""
+from django.shortcuts import render, redirect
+from main.models import Recipes, RecipesCategories
+from .forms import RecipesForm
 from django.core.files.storage import FileSystemStorage
-from django.conf.global_settings import STATIC_ROOT
-
 
 def recipes(request):
+    """Отображение рецептов"""
     recipes = Recipes.objects.all()
     return render(request, 'main/recipes.html', {'recipes':recipes})
 
-def five_recipes(request):
-
-    recipes = choices(Recipes.objects.all(), k=5)
-    print(type(recipes[0]))
-    return render(request, 'main/five_recipes.html', {'recipes':recipes})
-
-
 def recipe(request, recipe_id):
+    """Отображение рецепта по id"""
     recipes = Recipes.objects.get(id=recipe_id)
     recipe = {
         "name": recipes.name,
@@ -34,6 +28,7 @@ def recipe(request, recipe_id):
 
 
 def recipe_form(request):
+    """Отображение формы добавления, добавление рецепта"""
     if request.method == 'POST':
         form = RecipesForm(request.POST, request.FILES)
         if form.is_valid():
@@ -46,8 +41,6 @@ def recipe_form(request):
                 image=f"main/{data['image'].name}/",
                 ingredients=data['ingredients'],
                 author=data['author'],)
-            # category = Categories.objects.create(
-            #     name=data['category'],)
             RecipesCategories.objects.create(
                 recipes=recipe,
                 category=data['category'],)
